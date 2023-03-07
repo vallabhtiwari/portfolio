@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     ####################################
     "fileshare.apps.FileshareConfig",
     "shorturl.apps.ShorturlConfig",
+    "base.apps.BaseConfig",
+    ####################################
     "django.contrib.sites",
     "crispy_forms",
     "crispy_bootstrap5",
@@ -63,7 +65,7 @@ ROOT_URLCONF = "portfolio.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [os.path.join(BASE_DIR, "templates")],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
