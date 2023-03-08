@@ -3,7 +3,7 @@ from .views import home, upload, upload_success
 
 app_name = "fileshare"
 urlpatterns = [
-    path("", home, name="home"),
+    # path("", home, name="home"),
     path("upload/", upload, name="upload"),
     path("upload-success/<slug:id>/", upload_success, name="upload-success"),
 ]
