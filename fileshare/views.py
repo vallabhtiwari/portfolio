@@ -9,6 +9,8 @@ from .forms import FileForm
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
+from .tasks import zip_files
+
 
 def home(request):
     return render(request, "fileshare/home.html")
@@ -27,7 +29,9 @@ def upload(request):
                 File.objects.create(file=f, folder=folder)
 
             if len(files) > 1:
-                folder.zip_files()
+                zip_files.delay(name=folder.name)
+                folder.zipped = True
+                # folder.zip_files()
             folder.save()
 
             return Response({"folder_id": folder.name})
