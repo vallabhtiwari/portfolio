@@ -1,4 +1,4 @@
-from django.shortcuts import Http404, render, redirect
+from django.shortcuts import Http404, render
 from django.conf import settings
 from django.contrib.sites.models import Site
 
@@ -41,9 +41,9 @@ def upload(request):
 
 
 @api_view(["GET"])
-def upload_success(request, id):
+def upload_success(request, name):
     try:
-        folder = Folder.objects.get(name=id)
+        folder = Folder.objects.get(name=name)
     except:
         raise Http404
 
