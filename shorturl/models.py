@@ -9,7 +9,7 @@ url_ids = set()
 class ShortUrl(models.Model):
     link = models.URLField(max_length=1000)
     id = models.CharField(max_length=4, primary_key=True)
-    date_created = models.DateTimeField(default=datetime.now)
+    date_created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return f"{self.id}"
