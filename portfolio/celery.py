@@ -1,4 +1,4 @@
-# from __future__ import absolute_import, unicode_literals
+from __future__ import absolute_import, unicode_literals
 import os
 
 from celery import Celery
@@ -12,7 +12,12 @@ app.conf.update(timezone="Asia/Kolkata")
 app.config_from_object(settings, namespace="CELERY")
 
 # celery beat settings
-app.conf.beat_schedule = {}
+app.conf.beat_schedule = {
+    "delete_files_older_than_10_days": {
+        "task": "fileshare.tasks.delete_files",
+        "schedule": crontab(minute=0, hour=0),
+    }
+}
 #################
 app.autodiscover_tasks()
 

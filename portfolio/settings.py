@@ -123,7 +123,7 @@ TIME_ZONE = "Asia/Kolkata"
 
 USE_I18N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
@@ -147,3 +147,4 @@ CELERY_RESULT_BACKEND = "django-db"
 
 # CELERY BEAT SETTINGS
 CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers:DatabaseScheduler"
+DJANGO_CELERY_BEAT_TZ_AWARE = False

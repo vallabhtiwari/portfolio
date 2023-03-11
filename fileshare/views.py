@@ -31,7 +31,6 @@ def upload(request):
             if len(files) > 1:
                 zip_files.delay(name=folder.name)
                 folder.zipped = True
-                # folder.zip_files()
             folder.save()
 
             return Response({"folder_id": folder.name})
