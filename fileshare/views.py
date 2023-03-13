@@ -1,15 +1,11 @@
-from django.shortcuts import Http404, render
-from django.conf import settings
-from django.contrib.sites.models import Site
+from django.shortcuts import render
 
-from .models import File, Folder
-from shorturl.models import ShortUrl
 from .forms import FileForm
+from .utils import verify_data, fetch_url
 
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-
-from .tasks import zip_files
+from rest_framework import status
 
 
 def home(request):
@@ -22,18 +18,12 @@ def upload(request):
     if request.method == "POST":
         form = FileForm(request.POST, request.FILES)
         files = request.FILES.getlist("file")
+        success, context = verify_data(form, files)
 
-        if form.is_valid:
-            folder = Folder.objects.create()
-            for f in files:
-                File.objects.create(file=f, folder=folder)
-
-            if len(files) > 1:
-                zip_files.delay(name=folder.name)
-                folder.zipped = True
-            folder.save()
-
-            return Response({"folder_id": folder.name})
+        if success:
+            return Response(context, status=status.HTTP_201_CREATED)
+        else:
+            return Response(context, status=status.HTTP_400_BAD_REQUEST)
 
     context = {"form": form}
     return render(request, "fileshare/upload.html", context)
@@ -41,23 +31,9 @@ def upload(request):
 
 @api_view(["GET"])
 def upload_success(request, name):
-    try:
-        folder = Folder.objects.get(name=name)
-    except:
-        raise Http404
+    success, context = fetch_url(name)
 
-    current_site = Site.objects.get_current()
-    url = f"{current_site.domain}" + settings.MEDIA_URL
-
-    if folder.zipped:
-        url += f"{folder.name}" + ".zip"
+    if success:
+        return Response(context, status=status.HTTP_200_OK)
     else:
-        url += f"{folder.file_set.first().file}"
-
-    short_url = ShortUrl.objects.create(link=url)
-    short_url = f"{current_site.domain}/" + short_url.id
-
-    folder.delete()
-    context = {"url": short_url}
-
-    return Response(context)
+        return Response(context, status=status.HTTP_404_NOT_FOUND)
