@@ -7,6 +7,10 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 
+from redis import Redis
+
+r = Redis()
+
 
 def home(request):
     return render(request, "fileshare/home.html")
@@ -18,12 +22,19 @@ def upload(request):
     if request.method == "POST":
         form = FileForm(request.POST, request.FILES)
         files = request.FILES.getlist("file")
-        success, context = verify_data(form, files)
+        try:
+            r.ping()
+            success, context = verify_data(form, files)
 
-        if success:
-            return Response(context, status=status.HTTP_201_CREATED)
-        else:
-            return Response(context, status=status.HTTP_400_BAD_REQUEST)
+            if success:
+                return Response(context, status=status.HTTP_201_CREATED)
+            else:
+                return Response(context, status=status.HTTP_400_BAD_REQUEST)
+        except:
+            return Response(
+                {"message": "Internal server error. Please try later..."},
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            )
 
     context = {"form": form}
     return render(request, "fileshare/upload.html", context)
