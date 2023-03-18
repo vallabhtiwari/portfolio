@@ -13,13 +13,20 @@ content_types = [
     "application/x-shellscript",
 ]
 
-
+# to check if a single file should be zipped or not
 def should_be_zipped(file):
     return file.content_type in content_types
 
 
-def valid_file_size(file):
-    return file.size <= 200000000  # file size should be less than 200000000bytes(200MB)
+# checking the size of files received(total size of 200MB is allowed)
+def check_files_size(files):
+    totalSize = 0
+    for f in files:
+        totalSize += f.size
+        if totalSize > 200000000 or f.size > 200000000:  # size in bytes
+            return False
+
+    return True
 
 
 # verify all the files and save them
@@ -28,16 +35,18 @@ def verify_data(form, files):
 
     if form.is_valid:
         folder = Folder.objects.create()
+        sizeValid = check_files_size(files)
+
+        if not sizeValid:  # checking if size>200MB
+            delete_folder.delay(
+                folder.name
+            )  # deleting the folder if size>200MB(in the background)
+
+            context["message"] = "Size of files is greater than 200MB"
+            return False, context
+
+        # create files if size acceptable
         for f in files:
-            if not valid_file_size(f):  # checking if size>200MB
-                delete_folder.delay(
-                    folder.name
-                )  # deleting the folder if size>200MB(in the background)
-
-                context["message"] = "File size is greater than 200MB"
-                return False, context
-
-            # create file object if size acceptable
             File.objects.create(file=f, folder=folder)
 
         # zipping multiple files, and some files(if received alone) of some selected content types
@@ -50,7 +59,7 @@ def verify_data(form, files):
                 delete_folder.delay(
                     folder.name
                 )  # deleting the folder in the background
-                context["message"] = "Filse could not be zipped. Please try again..."
+                context["message"] = "Files could not be zipped. Please try again..."
                 return False, context
 
             folder.zipped = True
