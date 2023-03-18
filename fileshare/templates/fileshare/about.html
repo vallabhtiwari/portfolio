@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h2>About this app</h2>
+    <p>This is not just a simple filesharing app</p>
+    <p>The frontend might seem little boring, and it appears that this is an app for just downloading and uploading files.</p>
+    <p>But at the backend some interesting things are going on. Like:</p>
+    <ul>
+        <li>Size validation at, if frontend validation is bypassed.</li>
+        <li>Zipping the files in the background to <b>reduce response time</b>, using <b>Celery</b>.</li>
+        <li>Deleting uploaded files in the background, if something is wrong using <b>Celery</b></li>
+        <li><b>Periodic tasks</b> to delete files older than 10 days, using <b>Celery</b></li>
+        <li><b>Redis</b> is used as a task-broker for the above features.</li>
+        <li>Serving the files through a short url, made by a <b>Url Shortener</b> app.</li>
+    </ul>
+    <p>Also the backend code is quite robust.</p>
+    <p>But this is not a perfect app. Please try to expolit it and report an issue at <a href="https://github.com/vallabhtiwari">GitHub:@vallabhtiwari</a></p>
+{% endblock content %}

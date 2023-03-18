@@ -48,3 +48,7 @@ def upload_success(request, name):
         return Response(context, status=status.HTTP_200_OK)
     else:
         return Response(context, status=status.HTTP_404_NOT_FOUND)
+
+
+def about(request):
+    return render(request, "fileshare/about.html")
