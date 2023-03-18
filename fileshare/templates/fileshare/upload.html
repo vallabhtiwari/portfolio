@@ -2,7 +2,7 @@
 {% load static %}
 {% load crispy_forms_tags %}
 {% block content %}
-    <div class="rounded-4 card" style="width: 28rem; margin:5rem auto ;">
+    <div class="rounded-4 card" style="width: 28rem; margin:5rem auto 1rem ;">
         <form method="POST" id="form" enctype="multipart/form-data">
             <div class="card-body">
 
@@ -12,7 +12,7 @@
                 <div class="from-group p-4">
                     {% csrf_token %}
                     {{form|crispy}}
-                    <p id="instructions">Please do not upload files larger than 200mb</p>
+                    <p id="instructions">Please do not upload files larger than 200MB</p>
                 </div>
                 <div class="card-footer border-0">
                     <button type="submit" class="btn btn-primary m-2">Upload</button>
@@ -23,6 +23,8 @@
 
             </div>
         </form>
+    </div>
+    <div class="rounded-4 alert alert-danger alert-dismissible fade show d-none" id="error" style="width: 28rem; margin:auto ;"role="alert">
     </div>
     {% include 'fileshare/modal.html' %}
 
