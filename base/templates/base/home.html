@@ -1,5 +1,24 @@
 {% extends 'base.html' %}
+{% load static %}
+{% get_static_prefix as STATIC_PREFIX %}
 {% block content %}
-    <h2>Nothing much right now <i class="bi bi-emoji-neutral-fill"></i></h2>
-    <h3>Meanwhile check the file sharing app: <a href="{% url 'fileshare:upload' %}">Filshare</a></h3>
+    <!-- <h2>Nothing much right now <i class="bi bi-emoji-neutral-fill"></i></h2> -->
+    <!-- <h3>Meanwhile check the file sharing app: <a href="{% url 'fileshare:upload' %}">Filshare</a></h3> -->
+
+    <!-- <img src="" alt="Hi!"> -->
+    <div class="container">
+        <div class="row">
+            <div class="card" style="width: 18rem;">
+                <img src="{% static 'base/me.jpg' %}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+
+        </div>
+    </div>
 {% endblock content %}
