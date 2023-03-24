@@ -2,6 +2,7 @@ var fileForm = document.getElementById("form")
 var urlContent = document.getElementById("url-content")
 var clip = document.getElementById("clip")
 var errorMess = document.getElementById("error")
+var mess = document.getElementById("note")
 
 fileForm.addEventListener("submit", function(event) {
   event.preventDefault()
@@ -16,6 +17,7 @@ fileForm.addEventListener("submit", function(event) {
   axios.post(url, formdata)
     .then(function(response) {
       clip.classList.remove("d-none")
+      mess.classList.remove("d-none")
       urlContent.innerText = response.data["url"]
     })
     .catch(function(error) {
