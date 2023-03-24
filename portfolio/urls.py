@@ -21,8 +21,11 @@ from django.urls import path, include
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    ###########################################
     path("", include("base.urls")),
     path("share/", include("fileshare.urls")),
+    ###########################################
+    path("shorten/", include("shorturl.urls")),
     path("<str:id>/", include("shorturl.urls")),
 ]
 
