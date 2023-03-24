@@ -1,9 +1,12 @@
-body,.card{
+body{
   background-color: #212529;
   color:#f7f8fa;
 
 }
 
+.card{
+  background-color: #303336;
+}
 
 a{
   text-decoration: none;
