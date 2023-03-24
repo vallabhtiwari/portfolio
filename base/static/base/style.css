@@ -1,0 +1,44 @@
+body,.card{
+  background-color: #212529;
+  color:#f7f8fa;
+
+}
+
+
+a{
+  text-decoration: none;
+  color:#f7f8fa;
+  font-size:1.25rem;
+}
+
+.my-image{
+  border-radius:50%;
+  height:200px;
+  width: 200px;
+  margin: auto;
+}
+
+p{
+  font-size:1.25rem;
+  margin: 0;
+}
+
+.projects-row{
+  width:75%;
+}
+
+.row{
+  padding:2rem;
+  text-align: center;
+  margin: auto;
+  /* border: 1px solid white; */
+}
+
+.navbar{
+  width: 75%;
+}
+
+.connections{
+  width: 65%;
+}
+
