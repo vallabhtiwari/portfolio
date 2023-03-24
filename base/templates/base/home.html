@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load crispy_forms_tags %}
 {% block styles %}
     <link rel="stylesheet" href="{% static 'base/style.css' %}">
 {% endblock styles %}
@@ -72,12 +73,14 @@
             </div>
         </div>
         <br>
-        <div class="row" id="feedback">
-            <form action="">
-                <input type="name" name="" value="">
-                <input type="email" name="" value="">
-                <input type="textarea">
-                <input type="submit">
+        <div class="row" id="projects">
+            <h2 id="feedback">Feedback</h2>
+        </div>
+        <div class="row w-50 pt-0" >
+            <form method="POST" id="form">
+                {% csrf_token %}
+                {{form|crispy}}
+                <button type="submit" class="btn btn-primary">Submit</button>
             </form>
         </div>
     </div>
