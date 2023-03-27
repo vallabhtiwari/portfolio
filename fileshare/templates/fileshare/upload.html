@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load crispy_forms_tags %}
+{% block title %}
+    <title>File Share</title>
+{% endblock title %}
 {% block content %}
     <a href="{% url 'fileshare:about'%}" class="d-flex justify-content-end pt-4 pe-4">About</a>
     <div class="rounded-4 card" style="width: 28rem; margin:5rem auto 1rem ;">

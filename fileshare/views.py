@@ -42,7 +42,7 @@ def upload(request):
 
 @api_view(["GET"])
 def upload_success(request, name):
-    success, context = fetch_url(name)
+    success, context = fetch_url(name, request.scheme)
 
     if success:
         return Response(context, status=status.HTTP_200_OK)

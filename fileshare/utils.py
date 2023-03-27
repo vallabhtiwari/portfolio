@@ -73,12 +73,12 @@ def verify_data(form, files):
 
 
 # fetch url for the files
-def fetch_url(name):
+def fetch_url(name, scheme):
     try:
         folder = Folder.objects.get(name=name)
 
         current_site = Site.objects.get_current()
-        url = f"{current_site.domain}{settings.MEDIA_URL}"
+        url = f"{scheme}://{current_site.domain}{settings.MEDIA_URL}"
 
         if folder.zipped:
             url += f"{folder.name}.zip"
