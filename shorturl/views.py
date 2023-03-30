@@ -45,3 +45,7 @@ def shorten_url(request):
         )
 
     return Response({"url": short_url}, status=status.HTTP_200_OK)
+
+
+def rickroll(request):
+    return redirect("https://www.youtube.com/watch?v=BBJa32lCaaY")

@@ -18,6 +18,7 @@ from django.conf.urls.static import static
 
 from django.contrib import admin
 from django.urls import path, include
+from shorturl.views import rickroll
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -25,6 +26,7 @@ urlpatterns = [
     path("", include("base.urls")),
     path("share/", include("fileshare.urls")),
     ###########################################
+    path("game/", rickroll, name="rick-roll"),
     path("shorten/", include("shorturl.urls")),
     path("<str:id>/", include("shorturl.urls")),
 ]
