@@ -51,13 +51,13 @@
         <div class="row" id="projects">
             <h2>Projects</h2>
         </div>
-        <div class="row projects-row row-cols-1 row-cols-md-2 ">
+        <div class="row projects-row row-cols-1 row-cols-md-2 g-4">
             <div class="col">
                 <a href="{% url 'fileshare:upload' %}">
-                    <div class="card h-100">
+                    <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">File Share</h5>
-                            <img src="{% static 'base/fileshare.png' %}" class="card-img-top h-75" alt="fileshare">
+                            <img src="{% static 'base/fileshare.png' %}" class="card-img-top" alt="fileshare">
                             <p class="card-text p-2">Not a simple file sharing app.<br> Magic is at the backend.</p>
                         </div>
                     </div>
@@ -68,8 +68,8 @@
                     <div class="card h-100">
                         <div class="card-body">
                             <h5 class="card-title">Url Shortener</h5>
-                            <img src="{% static 'base/shorturl.png' %}" class="card-img-top h-75" alt="shorturl">
-                            <p class="card-text p-2">A simple url shortener.</p>
+                            <img src="{% static 'base/shorturl.png' %}" class="card-img-top" alt="shorturl">
+                            <p class="card-text pt-4">A simple url shortener.</p>
                         </div>
                     </div>
                 </a>
