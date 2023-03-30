@@ -11,6 +11,7 @@ import os, shutil
 # more content-types will be added in future
 content_types = [
     "application/x-shellscript",
+    "text/html",
 ]
 
 # to check if a single file should be zipped or not

@@ -5,7 +5,7 @@
     <title>File Share</title>
 {% endblock title %}
 {% block content %}
-    <a href="{% url 'fileshare:about'%}" class="d-flex justify-content-end pt-4 pe-4">About</a>
+    <p class="text-end p-4 pb-0 ps-0"><a href="{% url 'fileshare:about'%}">About</a></p>
     <div class="rounded-4 card" style="width: 28rem; margin:5rem auto 1rem ;">
         <form method="POST" id="form" enctype="multipart/form-data">
             <div class="card-body">
