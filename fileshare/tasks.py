@@ -43,8 +43,8 @@ def delete_files(self):
     count = 0
 
     for o in old:
-        name = o.link.split("/")[4]
         try:
+            name = o.link.split("/")[4]
             shutil.rmtree(name)
             count += 1
         except NotADirectoryError:
