@@ -1,7 +1,4 @@
 # My portfolio, made with django.
-[vallabh.codes](https://vallabh.codes)
-
-![Screenshot from 2023-04-18 11-01-43](https://user-images.githubusercontent.com/87356031/232682409-302a2a4e-ac19-4678-b80c-ff72fffb320f.png)
 
 Feel free to clone and try the apps. Report issues also, please... :slightly_smiling_face:
 # Apps:
